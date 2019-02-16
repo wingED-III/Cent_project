@@ -32,5 +32,5 @@ It supposes to be share among share **our** group but there is no downside about
   ~~I would like to say something.but I don't know what to say.~~
   
   Of course.I create this project. 
-  May be you don't understand my code but I hope you do.:chicken:
+you may not understand my code but I hope you do.:chicken:
   
