@@ -2,7 +2,7 @@
 
 This project is a Arduino library create for a specific thing.
 
-It supposes to be share among share **our** group but there is no downside about uploading on github.
+It supposes to be share among share **our** group but It is ok to upload on github.
 
 <br/>
 <br/>
