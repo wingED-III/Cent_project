@@ -9,7 +9,7 @@ It supposes to be share among share **our** group but there is no downside about
 <br/>
 
 ## Details
-  - **version Alhpa 2.1**
+  - **version Alpha 2.1**
   - 2 objects
       - C_Motor
       - C_MotorB
