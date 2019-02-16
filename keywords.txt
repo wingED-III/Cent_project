@@ -1,0 +1,42 @@
+#######################################
+# Syntax Coloring Map For testing
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+C_Motor 	KEYWORD1 
+C_MotorB	KEYWORD1 
+Pins		KEYWORD1 
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+functionM	KEYWORD2
+setupPin 	KEYWORD2
+setConstant 	KEYWORD2
+calculate 	KEYWORD2
+driveMotor	KEYWORD2
+m_update	KEYWORD2
+
+Mmap		KEYWORD2
+ana2Deg		KEYWORD2
+Deg2ana		KEYWORD2
+calError	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+ACCEPT_ERROR	LITERAL1
+MAX_SPEED	LITERAL1
+LIMITED_DEGREE	LITERAL1
+MIN_DEGREE	LITERAL1
+START_POINT	LITERAL1
+VR_MIN		LITERAL1
+VR_MAX		LITERAL1
+MAX_VR_DEGREE	LITERAL1	
+ANALOG_START	LITERAL1	
