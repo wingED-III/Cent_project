@@ -1,4 +1,4 @@
-# xC_project
+# Cent_Project
 
 This project is a Arduino library create for a specific thing.
 
@@ -9,16 +9,26 @@ It supposes to be share among share **our** group but It is ok to upload on gith
 <br/>
 
 ## Details
-  - **version Alpha 2.1**
-  - 2 objects
+  - **version Beta 3.7.6**
+  - 3 objects
       - C_Motor
       - C_MotorB
+      - C_Robot
   - 1 structure
       - Pins
   - constants definition
   - working code
-    - xxx.ino
+    - eg. xxx.ino
   - custom functions
+  - PID control (Only P)
+  <br/>
+  <br/>
+  <br/>
+  
+  ## Coming Soon
+  
+  - fix PID control 
+  - update README
   
   <br/>
   <br/>
