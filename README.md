@@ -10,6 +10,7 @@ It supposes to be share among share **our** group but It is ok to upload on gith
 
 ## Details
   - **version Beta 3.7.6**
+  - To use **#include<funchtionM.h>**
   - 3 objects
       - C_Motor
       - C_MotorB
