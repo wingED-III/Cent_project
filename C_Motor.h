@@ -31,6 +31,8 @@ class C_Motor
     void calculate(double input);
     void driveMotor();
     void m_update();
+    void info();
+    double getPwm();
 };
 
 #endif

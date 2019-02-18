@@ -10,6 +10,7 @@ class C_MotorB : public C_Motor
     C_MotorB(uint8_t N1, uint8_t IN2, uint8_t Vr);
     void driveMotor();
     void setupPin();
+    void info();
 };
 
 #endif

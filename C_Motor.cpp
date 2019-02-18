@@ -17,14 +17,14 @@ void C_Motor::setupPin()
   pinMode(this->IN2, OUTPUT);
   pinMode(this->EN, OUTPUT);
 
-  Serial.print("in1: ");
-  Serial.print(this->IN1);
-  Serial.print(" |in2: ");
-  Serial.print(this->IN2);
-  Serial.print(" |en: ");
-  Serial.print(this->EN);
-  Serial.print(" |vr: ");
-  Serial.println(this->Vr_pin);
+  SerialUSB.print("in1: ");
+  SerialUSB.print(this->IN1);
+  SerialUSB.print(" |in2: ");
+  SerialUSB.print(this->IN2);
+  SerialUSB.print(" |en: ");
+  SerialUSB.print(this->EN);
+  SerialUSB.print(" |vr: ");
+  SerialUSB.println(this->Vr_pin);
 }
 
 void C_Motor::setConstant(double Kp)
@@ -35,17 +35,17 @@ void C_Motor::setConstant(double Kp)
 void C_Motor::calculate(double input) //input in analog range
 {
   this->vr_value = analogRead(this->Vr_pin);
-//
-//  if (input > 900) // limit
-//    input = 900;
-//  else if (input < 200)
-//    input = 200;
+
+  if (input > ANALOG_LIMIT_MAX) // limit
+    input = ANALOG_LIMIT_MAX;
+  else if (input < ANALOG_LIMIT_MIN)
+    input = ANALOG_LIMIT_MIN;
 
   this->input = input;
   this->error = calError(this->input, this->vr_value);
   this->diffError = this->error - this->preError;
 
-  this->pwm = this->Kp * Mmap(this->error, -1023, 1023, MAX_SPEED, -MAX_SPEED);
+  this->pwm = (this->Kp * Mmap(this->error, -1023, 1023, MAX_SPEED, -MAX_SPEED));
 }
 
 void C_Motor::driveMotor()
@@ -57,13 +57,17 @@ void C_Motor::driveMotor()
   pn1 = &this->IN1;
   pn2 = &this->IN2;
   ppwm = &this->pwm;
-
+  int tp = this->pwm;
   if (!(this->diffError == 0 && this->error == 0))
   {
     {
       if (*ppwm < 0)
       {
-        *ppwm = abs(*ppwm);
+        *ppwm = abs(*ppwm); //+ BASE_POWER;
+        tp = abs(tp) + BASE_POWER_A;
+        if (tp > MAX_SPEED)
+          tp = MAX_SPEED;
+
         if (*ppwm > MAX_SPEED)
         {
           *ppwm = MAX_SPEED;
@@ -73,35 +77,66 @@ void C_Motor::driveMotor()
       }
       // else if (*ppwm == 0)
       // {
-      //   digitalWrite(*pn1, 1);
-      //   digitalWrite(*pn2, 1);
+      //   digitalWrite(*pn1, 0);
+      //   digitalWrite(*pn2, 0);
+      //   analogWrite(this->EN, 0);
       // }
       else
       {
+       // *ppwm += BASE_POWER;
         if (*ppwm > MAX_SPEED)
         {
           *ppwm = MAX_SPEED;
         }
+
+        tp += BASE_POWER_A;
+        if (tp > MAX_SPEED)
+          tp = MAX_SPEED;
+
         digitalWrite(*pn1, 0);
         digitalWrite(*pn2, 1);
       }
-      analogWrite(this->EN, *ppwm);
+      //analogWrite(this->EN, *ppwm);
+      analogWrite(this->EN, tp);
     }
   }
+  // if (this->vr_value > ANALOG_LIMIT_MAX || this->vr_value < ANALOG_LIMIT_MIN)
+  // {
+
+  //   digitalWrite(*pn1, 0);
+  //   digitalWrite(*pn2, 0);
+  //   analogWrite(this->EN, 0);
+  // }
   // else
   // {
   //   digitalWrite(*pn1, 1);
   //   digitalWrite(*pn2, 1);
   // }
-  Serial.print("in1: ");
-  Serial.print(*pn1);
-  Serial.print(" |in2: ");
-  Serial.print(*pn2);
-  Serial.print(" |pwm: ");
-  Serial.println(*ppwm);
+  // SerialUSB.print("in1: ");
+  // SerialUSB.print(*pn1);
+  // SerialUSB.print(" |in2: ");
+  // SerialUSB.print(*pn2);
+  SerialUSB.print(" |Set point: ");
+  SerialUSB.print(input);
+  SerialUSB.print(" |Analog: ");
+  SerialUSB.print(vr_value);
+  SerialUSB.print(" |error: ");
+  SerialUSB.print(error);
+  SerialUSB.print(" |pwm: ");
+  SerialUSB.println(this->pwm);
 }
 
 void C_Motor::m_update()
 {
   this->preError = this->error;
+}
+
+void C_Motor::info()
+{
+  SerialUSB.print("This is B2 version.Analog pin : ");
+  SerialUSB.println(this->Vr_pin);
+}
+
+double C_Motor::getPwm(){
+  return this->pwm;
 }

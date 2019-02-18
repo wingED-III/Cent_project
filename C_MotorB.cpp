@@ -17,12 +17,12 @@ void C_MotorB::setupPin()
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
 
-  Serial.print("in1: ");
-  Serial.print(IN1);
-  Serial.print(" |in2: ");
-  Serial.print(IN2);
-  Serial.print(" |vr: ");
-  Serial.println(Vr_pin);
+  SerialUSB.print("in1: ");
+  SerialUSB.print(IN1);
+  SerialUSB.print(" |in2: ");
+  SerialUSB.print(IN2);
+  SerialUSB.print(" |vr: ");
+  SerialUSB.println(Vr_pin);
 }
 
 void C_MotorB::driveMotor()
@@ -34,55 +34,72 @@ void C_MotorB::driveMotor()
   pn1 = &IN1;
   pn2 = &IN2;
   ppwm = &pwm;
+  int tp = this->pwm;
 
   if (!(diffError == 0 && error == 0))
   {
     {
+
       if (*ppwm > 0)
       {
-        Serial.print(" |PWM++  ");
-
+        tp += BASE_POWER;
+        SerialUSB.print(" |PWM++  ");
+        if (tp > MAX_SPEED)
+          tp = MAX_SPEED;
         if (*ppwm > MAX_SPEED)
         {
           *ppwm = MAX_SPEED;
         }
-        analogWrite(*pn1, *ppwm);
+        analogWrite(*pn1, tp);
         analogWrite(*pn2, 0);
       }
       // else if (*ppwm == 0)
       // {
-      //     analogWrite(*pn1, 1);
-      //     analogWrite(*pn2, 1);
+      //   analogWrite(*pn1, 0);
+      //   analogWrite(*pn2, 0);
       // }
       else
       {
-        *ppwm = abs(*ppwm);
-        Serial.print(" |PWM--  ");
+        *ppwm = abs(*ppwm); //+BASE_POWER;
+        tp = abs(tp) + BASE_POWER;
+        SerialUSB.print(" |PWM--  ");
         if (*ppwm > MAX_SPEED)
         {
           *ppwm = MAX_SPEED;
         }
+        if (tp > MAX_SPEED)
+          tp = MAX_SPEED;
         analogWrite(*pn1, 0);
-        analogWrite(*pn2, *ppwm);
+        analogWrite(*pn2, tp);
       }
     }
   }
+
+  // if (this->vr_value > ANALOG_LIMIT_MAX || this->vr_value < ANALOG_LIMIT_MIN)
+  // {
+
+  //   digitalWrite(*pn1, 0);
+  //   digitalWrite(*pn2, 0);
+  //   analogWrite(this->EN, 0);
+  // }
   // else
   // {
   //     analogWrite(*pn1, 255);
   //     analogWrite(*pn2, 255);
   // }
-  //  Serial.print("in1: ");
-  //  Serial.print(*pn1);
-  //  Serial.print(" |in2: ");
-  //  Serial.print(*pn2);
 
-  Serial.print(" |Set point: ");
-  Serial.print(input);
-  Serial.print(" |Analog: ");
-  Serial.print(vr_value);
-  Serial.print(" |error: ");
-  Serial.print(error);
-  Serial.print(" |pwm: ");
-  Serial.println(*ppwm);
+  SerialUSB.print(" |Set point: ");
+  SerialUSB.print(input);
+  SerialUSB.print(" |Analog: ");
+  SerialUSB.print(vr_value);
+  SerialUSB.print(" |error: ");
+  SerialUSB.print(error);
+  SerialUSB.print(" |pwm: ");
+  SerialUSB.println(*ppwm);
+}
+
+void C_MotorB::info()
+{
+  SerialUSB.print("This is B4 version.Analog pin : ");
+  SerialUSB.println(this->Vr_pin);
 }
