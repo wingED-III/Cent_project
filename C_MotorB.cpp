@@ -8,7 +8,6 @@ C_MotorB::C_MotorB(uint8_t I1, uint8_t I2, uint8_t V)
 {
   IN1 = I1;
   IN2 = I2;
-
   Vr_pin = V;
 }
 
@@ -43,7 +42,7 @@ void C_MotorB::driveMotor()
       if (*ppwm > 0)
       {
         tp += BASE_POWER;
-        SerialUSB.print(" |PWM++  ");
+        //SerialUSB.print(" |PWM++  ");
         if (tp > MAX_SPEED)
           tp = MAX_SPEED;
         if (*ppwm > MAX_SPEED)
@@ -53,16 +52,11 @@ void C_MotorB::driveMotor()
         analogWrite(*pn1, tp);
         analogWrite(*pn2, 0);
       }
-      // else if (*ppwm == 0)
-      // {
-      //   analogWrite(*pn1, 0);
-      //   analogWrite(*pn2, 0);
-      // }
       else
       {
         *ppwm = abs(*ppwm); //+BASE_POWER;
         tp = abs(tp) + BASE_POWER;
-        SerialUSB.print(" |PWM--  ");
+        //SerialUSB.print(" |PWM--  ");
         if (*ppwm > MAX_SPEED)
         {
           *ppwm = MAX_SPEED;
@@ -75,23 +69,11 @@ void C_MotorB::driveMotor()
     }
   }
 
-  // if (this->vr_value > ANALOG_LIMIT_MAX || this->vr_value < ANALOG_LIMIT_MIN)
-  // {
 
-  //   digitalWrite(*pn1, 0);
-  //   digitalWrite(*pn2, 0);
-  //   analogWrite(this->EN, 0);
-  // }
-  // else
-  // {
-  //     analogWrite(*pn1, 255);
-  //     analogWrite(*pn2, 255);
-  // }
-
-  SerialUSB.print(" |Set point: ");
-  SerialUSB.print(input);
+  SerialUSB.print(" |Set degree: ");
+  SerialUSB.print(ana2Deg(input));
   SerialUSB.print(" |Analog: ");
-  SerialUSB.print(vr_value);
+  SerialUSB.print(ana2Deg(vr_value));
   SerialUSB.print(" |error: ");
   SerialUSB.print(error);
   SerialUSB.print(" |pwm: ");

@@ -32,6 +32,10 @@ void C_Motor::setConstant(double Kp)
   this->Kp = Kp;
 }
 
+void C_Motor::calD(double degree){
+  this->calculate(Deg2ana(degree));
+}
+
 void C_Motor::calculate(double input) //input in analog range
 {
   this->vr_value = analogRead(this->Vr_pin);
@@ -43,9 +47,9 @@ void C_Motor::calculate(double input) //input in analog range
 
   this->input = input;
   this->error = calError(this->input, this->vr_value);
-  this->diffError = this->error - this->preError;
+  //this->diffError = this->error - this->preError;
 
-  this->pwm = (this->Kp * Mmap(this->error, -1023, 1023, MAX_SPEED, -MAX_SPEED));
+  this->pwm = (this->Kp * Mmap(this->error, -1023, 1023, 255, -255)) - (this->preError * this->Kd);
 }
 
 void C_Motor::driveMotor()
@@ -75,15 +79,10 @@ void C_Motor::driveMotor()
         digitalWrite(*pn1, 1);
         digitalWrite(*pn2, 0);
       }
-      // else if (*ppwm == 0)
-      // {
-      //   digitalWrite(*pn1, 0);
-      //   digitalWrite(*pn2, 0);
-      //   analogWrite(this->EN, 0);
-      // }
+
       else
       {
-       // *ppwm += BASE_POWER;
+        // *ppwm += BASE_POWER;
         if (*ppwm > MAX_SPEED)
         {
           *ppwm = MAX_SPEED;
@@ -100,26 +99,12 @@ void C_Motor::driveMotor()
       analogWrite(this->EN, tp);
     }
   }
-  // if (this->vr_value > ANALOG_LIMIT_MAX || this->vr_value < ANALOG_LIMIT_MIN)
-  // {
 
-  //   digitalWrite(*pn1, 0);
-  //   digitalWrite(*pn2, 0);
-  //   analogWrite(this->EN, 0);
-  // }
-  // else
-  // {
-  //   digitalWrite(*pn1, 1);
-  //   digitalWrite(*pn2, 1);
-  // }
-  // SerialUSB.print("in1: ");
-  // SerialUSB.print(*pn1);
-  // SerialUSB.print(" |in2: ");
-  // SerialUSB.print(*pn2);
-  SerialUSB.print(" |Set point: ");
-  SerialUSB.print(input);
-  SerialUSB.print(" |Analog: ");
-  SerialUSB.print(vr_value);
+
+  SerialUSB.print(" |Set degree: ");
+  SerialUSB.print(ana2Deg(input));
+  SerialUSB.print(" |degree: ");
+  SerialUSB.print(ana2Deg(vr_value));
   SerialUSB.print(" |error: ");
   SerialUSB.print(error);
   SerialUSB.print(" |pwm: ");
@@ -137,6 +122,12 @@ void C_Motor::info()
   SerialUSB.println(this->Vr_pin);
 }
 
-double C_Motor::getPwm(){
+double C_Motor::getPwm()
+{
   return this->pwm;
+}
+
+double  C_Motor::getDeg(){
+  this->vr_value = analogRead(this->Vr_pin);
+  return ana2Deg(this->vr_value);
 }

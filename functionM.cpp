@@ -21,10 +21,19 @@ double Deg2ana(int x)
   return x * (nr / oldR);
 }
 
-double calError(double expect, double realVal)
+double calError(double setPoint, double realVal)
 {
-  double rt = expect - realVal;
+  double rt = setPoint - realVal;
   if (abs(rt) < ACCEPT_ERROR)
-    return 0;
+    rt = 0;
+  else if (rt > ACCEPT_ERROR)
+  {
+    rt -= ACCEPT_ERROR;
+  }
+  else if (rt < -ACCEPT_ERROR)
+  {
+    rt += ACCEPT_ERROR;
+  }
+
   return rt;
 }

@@ -27,6 +27,7 @@ Deg2ana		KEYWORD2
 calError	KEYWORD2
 info        	KEYWORD2
 getPwm      	KEYWORD2
+getDeg  	KEYWORD2
 m0		KEYWORD2
 m1		KEYWORD2
 m2		KEYWORD2
@@ -35,6 +36,9 @@ m4		KEYWORD2
 m5		KEYWORD2
 m6		KEYWORD2
 m7		KEYWORD2
+R_Cal   	KEYWORD2
+R_drive 	KEYWORD2
+R_update    	KEYWORD2    
 #######################################
 # Instances (KEYWORD2)
 #######################################

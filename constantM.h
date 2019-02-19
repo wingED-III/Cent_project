@@ -1,6 +1,6 @@
 //max vr degree 300
 
-#define ACCEPT_ERROR 4 //acceptable error
+#define ACCEPT_ERROR 15 //acceptable error
 #define MAX_SPEED 200
 #define LIMITED_DEGREE 165
 #define MIN_DEGREE 5
