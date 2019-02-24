@@ -84,12 +84,12 @@ void setup()
   int dstate[8] = {LIFT, LIFT, LIFT, LIFT,
                    LIFT , LIFT ,  LIFT, LIFT
                   };
-  int ttt[8] = {150, 150, 150, 150,
-                150 , 150 , 150, 150
-               };
+//   int ttt[8] = {150, 150, 150, 150,
+//                 150 , 150 , 150, 150
+//                };
 
-  setpos(dstate, 2000);
-  alpos(ttt);
+//   setpos(dstate, 2000);
+//   alpos(ttt);
 
   while (1) {
     view(1);
