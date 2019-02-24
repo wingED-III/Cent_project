@@ -1,7 +1,7 @@
 //max vr degree 300
 
 #define ACCEPT_ERROR 15 //acceptable error
-#define MAX_SPEED 200
+#define MAX_SPEED 255
 #define LIMITED_DEGREE 165
 #define MIN_DEGREE 5
 #define START_POINT 30
@@ -14,4 +14,7 @@
 #define BASE_POWER 20
 #define BASE_POWER_A 50
 #define NOT_USE 99
-
+#define LIFT 45
+#define CHANGE_RATE 1.0
+#define CHANGE_RATE_DOWN 1.0
+#define MAX_SUM 4000

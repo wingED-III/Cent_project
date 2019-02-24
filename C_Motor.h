@@ -17,14 +17,14 @@ protected:
 
   double Kp;
   double Kd = 0.000625;
-  double diffError;
+  double Ki = 0.03;
+  double sumErr = 0;
   double input = ANALOG_START;
   double preError = 0;
   double vr_value = 255;
   double error = 0;
   double pwm = 0;
-
-  int offset =0;
+  int offset = 0;
 
 public:
   C_Motor();
@@ -37,8 +37,12 @@ public:
   void m_update();
   void info();
   double getPwm();
+  void setPwm(double x);
+  int getAna();
   double getDeg();
   void setOffset(int x);
+  void show();
+  void sum();
 };
 
 #endif

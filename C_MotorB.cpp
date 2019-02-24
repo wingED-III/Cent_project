@@ -35,49 +35,45 @@ void C_MotorB::driveMotor()
   ppwm = &pwm;
   int tp = this->pwm;
 
-  if (!(diffError == 0 && error == 0))
+  //if (!(diffError == 0 && error == 0))
+  // {
+  if (*ppwm > 0)
   {
+    tp += BASE_POWER;
+    //SerialUSB.print(" |PWM++  ");
+    if (tp > MAX_SPEED)
+      tp = MAX_SPEED;
+    if (*ppwm > MAX_SPEED)
     {
-
-      if (*ppwm > 0)
-      {
-        tp += BASE_POWER;
-        //SerialUSB.print(" |PWM++  ");
-        if (tp > MAX_SPEED)
-          tp = MAX_SPEED;
-        if (*ppwm > MAX_SPEED)
-        {
-          *ppwm = MAX_SPEED;
-        }
-        analogWrite(*pn1, tp);
-        analogWrite(*pn2, 0);
-      }
-      else
-      {
-        *ppwm = abs(*ppwm); //+BASE_POWER;
-        tp = abs(tp) + BASE_POWER;
-        //SerialUSB.print(" |PWM--  ");
-        if (*ppwm > MAX_SPEED)
-        {
-          *ppwm = MAX_SPEED;
-        }
-        if (tp > MAX_SPEED)
-          tp = MAX_SPEED;
-        analogWrite(*pn1, 0);
-        analogWrite(*pn2, tp);
-      }
+      *ppwm = MAX_SPEED;
     }
+    analogWrite(*pn1, tp);
+    analogWrite(*pn2, 0);
   }
+  else
+  {
+    *ppwm = abs(*ppwm); //+BASE_POWER;
+    tp = abs(tp) + BASE_POWER;
+    //SerialUSB.print(" |PWM--  ");
+    if (*ppwm > MAX_SPEED)
+    {
+      *ppwm = MAX_SPEED;
+    }
+    if (tp > MAX_SPEED)
+      tp = MAX_SPEED;
+    analogWrite(*pn1, 0);
+    analogWrite(*pn2, tp);
+  }
+  // }
 
-
-  SerialUSB.print(" |Set degree: ");
-  SerialUSB.print(ana2Deg(input));
-  SerialUSB.print(" |Analog: ");
-  SerialUSB.print(ana2Deg(vr_value));
-  SerialUSB.print(" |error: ");
-  SerialUSB.print(error);
-  SerialUSB.print(" |pwm: ");
-  SerialUSB.println(*ppwm);
+  // SerialUSB.print(" |Set degree: ");
+  // SerialUSB.print(ana2Deg(input));
+  // SerialUSB.print(" |Degree: ");
+  // SerialUSB.print(ana2Deg(vr_value));
+  // SerialUSB.print(" |error: ");
+  // SerialUSB.print(error);
+  // SerialUSB.print(" |pwm: ");
+  // SerialUSB.println(*ppwm);
 }
 
 void C_MotorB::info()

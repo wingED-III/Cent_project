@@ -9,14 +9,14 @@ double Mmap(int x, double oldL, double oldH, double newH, double newL)
 
 double ana2Deg(int x)
 {
-  const double nr = 1023;
+  const double nr = 1024;
   const double oldR = 360;
   return x * (oldR / nr);
 }
 
 double Deg2ana(int x)
 {
-  const double nr = 1023;
+  const double nr = 1024;
   const double oldR = 360;
   return x * (nr / oldR);
 }

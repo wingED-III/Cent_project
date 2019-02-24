@@ -38,7 +38,12 @@ m6		KEYWORD2
 m7		KEYWORD2
 R_Cal   	KEYWORD2
 R_drive 	KEYWORD2
-R_update    	KEYWORD2    
+R_update    	KEYWORD2
+R_CalD   	KEYWORD2 
+R_Transition   	KEYWORD2 
+R_getLastpos	KEYWORD2 
+R_still		KEYWORD2
+R_show		KEYWORD2
 #######################################
 # Instances (KEYWORD2)
 #######################################
@@ -60,3 +65,6 @@ ANALOG_LIMIT_MAX    LITERAL1
 ANALOG_LIMIT_MIN    LITERAL1
 BASE_POWER 	    LITERAL1
 NOT_USE		    LITERAL1
+STAND 		    LITERAL1
+LIFT 		    LITERAL1
+DOWN 		    LITERAL1
