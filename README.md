@@ -13,8 +13,8 @@ It supposes to be share among share **our** group but It is ok to upload on gith
 <br/>
 
 ## Details
-  - **version Beta 3.8.9**
-  - To use **#include<funchtionM.h>**
+  - **version Beta 3.8.14**
+  - To use **#include<Centaur.h>**
   - 3 objects
       - C_Motor
       - C_MotorB
@@ -29,11 +29,6 @@ It supposes to be share among share **our** group but It is ok to upload on gith
   <br/>
   <br/>
   <br/>
-  
-  ## Coming Soon
-  - fix PID control 
-  - update README
-  - New library name
   <br/>
   <br/>
   <br/>
