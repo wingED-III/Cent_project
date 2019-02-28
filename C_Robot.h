@@ -1,4 +1,4 @@
-#include "Arduino.h"
+#include "C_MotorB.h"
 
 #ifndef C_Robot_h
 #define C_Robot_h
@@ -6,6 +6,8 @@
 class C_Robot
 {
 public:
+  C_MotorB cmotorB[4];
+  C_Motor cmotor[4];
   C_MotorB m0;
   C_Motor m1;
   C_Motor m2;
@@ -17,6 +19,7 @@ public:
   double d[8];
 
   C_Robot();
+  //C_Robot(Pins r_pins[8]); //It's still Bug
   void R_calD(int a, int b, int c, int d, int e, int f, int g, int h);
   void R_Cal(double a, double b, double c, double d, double e, double f, double g, double h);
   void R_getLastpos();
@@ -28,6 +31,7 @@ public:
   void R_still();
   void R_show();
   void i_sum();
+  void reset_I();
 };
 
 #endif

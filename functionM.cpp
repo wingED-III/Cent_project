@@ -1,5 +1,4 @@
 #include "functionM.h"
-#include "constantM.h"
 
 double Mmap(int x, double oldL, double oldH, double newH, double newL)
 {

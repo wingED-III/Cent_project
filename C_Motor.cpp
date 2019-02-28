@@ -1,4 +1,4 @@
-#include "functionM.h"
+#include "C_Motor.h"
 
 C_Motor::C_Motor(uint8_t IN1, uint8_t IN2, uint8_t EN, uint8_t Vr)
 {
@@ -164,4 +164,8 @@ void C_Motor::sum()
 
 void C_Motor::setPwm(double x){
   this->pwm = x;
+}
+
+void C_Motor::reset_I(){
+  this->sumErr = 0;
 }

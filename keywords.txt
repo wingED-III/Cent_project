@@ -11,6 +11,7 @@ C_MotorB	KEYWORD1
 Pins		KEYWORD1 
 functionM	KEYWORD1
 C_Robot     	KEYWORD1
+Centaur     	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

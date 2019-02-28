@@ -1,8 +1,39 @@
-#include "functionM.h"
+#include "C_Robot.h"
 
 C_Robot::C_Robot()
 {
 }
+
+// C_Robot::C_Robot(Pins r_pins[8])
+// {
+//   for (int i = 0, j = 0, k = 0; i < 8; i++)
+//   {
+//     SerialUSB.print(i);
+//     if (r_pins[i].pwm == NOT_USE)
+//     {
+//   cmotorB[j] = C_MotorB(r_pins[i].in1, r_pins[i].in2, r_pins[i].vr);
+//      cmotorB[j].setupPin();
+//      cmotorB[j].setConstant(Ksets[i]);
+//       j++;
+//     }
+//     else
+//     {
+//       this->cmotor[k] = C_Motor(r_pins[i].in1, r_pins[i].in2, r_pins[i].pwm, r_pins[i].vr);
+//       this->cmotor[k].setupPin();
+//       this->cmotor[k].setConstant(Ksets[i]);
+//       k++;
+//     }
+//   }
+
+//   this->m0 = cmotorB[0];
+//   this->m1 = cmotor[0];
+//   this->m2 = cmotor[1];
+//   this->m3 = cmotorB[1];
+//   this->m4 = cmotorB[2];
+//   this->m5 = cmotor[2];
+//   this->m6 = cmotor[3];
+//   this->m7 = cmotorB[3];
+// }
 
 void C_Robot::R_calD(int a, int b, int c, int d, int e, int f, int g, int h)
 {
@@ -94,7 +125,7 @@ void C_Robot::R_Transition(int target[8])
     this->R_calD(d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7]);
 }
 
-void C_Robot::R_Transition(int target[8],double ch_rate)
+void C_Robot::R_Transition(int target[8], double ch_rate)
 {
 
   for (uint8_t i = 0; i < 8; i++)
@@ -174,4 +205,16 @@ void C_Robot::i_sum()
   this->m5.sum();
   this->m6.sum();
   this->m7.sum();
+}
+
+void C_Robot::reset_I()
+{
+  this->m0.reset_I();
+  this->m1.reset_I();
+  this->m2.reset_I();
+  this->m3.reset_I();
+  this->m4.reset_I();
+  this->m5.reset_I();
+  this->m6.reset_I();
+  this->m7.reset_I();
 }

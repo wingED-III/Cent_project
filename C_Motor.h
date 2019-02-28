@@ -1,8 +1,4 @@
-/*
-  version 0
-  P Tunning
-*/
-#include "Arduino.h"
+#include "functionM.h"
 
 #ifndef C_Motor_h
 #define C_Motor_h
@@ -42,6 +38,7 @@ public:
   double getDeg();
   void setOffset(int x);
   void show();
+  void reset_I();
   void sum();
 };
 

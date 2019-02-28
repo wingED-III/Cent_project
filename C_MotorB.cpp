@@ -1,4 +1,4 @@
-#include "functionM.h"
+#include "C_MotorB.h"
 
 C_MotorB::C_MotorB()
 {
