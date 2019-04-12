@@ -1,12 +1,10 @@
+# [No longer developed]
+
 # Cent_Project
 
 This project is a Arduino library create for a specific thing.
 
 It supposes to be share among share **our** group but It is ok to upload on github.
-
-## Update Note
-
-**25/02/19**  We're working on walking pattern. Current version is still not practical.latey update won't be formal and organized.
 
 <br/>
 <br/>
@@ -38,10 +36,5 @@ It supposes to be share among share **our** group but It is ok to upload on gith
   
   **From Creator**
   
-  ~~I would like to say something.but I don't know what to say.~~
-  
-  Of course.I create this project. 
-you may not understand my code but I hope you do.:chicken:
-
-**THIS IS HARD AF!**
+We Failed.
   
